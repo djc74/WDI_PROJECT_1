@@ -23,12 +23,12 @@ $(() => {
     // changeClassName();
   }
   pickRandom();
-
-  // // Change class name
-  // function changeClassName () {
-  $randomSquare(function() {
-    $randomSquare.addClass('background-color','yellow');
-  });
+  //
+  // // // Change class name
+  // // function changeClassName () {
+  // $randomSquare(function() {
+  //   $randomSquare.addClass('background-color','yellow');
+  // });
   // }
   // // // }
   // // //
