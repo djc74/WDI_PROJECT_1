@@ -10,29 +10,44 @@ $(() => {
 
   // Get DOM variables
   const $li = $('li');
+
   let $randomSquare;
+  // let $selectedSquare;
 
   // Pick random square
   function pickRandom () {
     $randomSquare = $li[Math.floor($li.length * Math.random())]
     console.log($randomSquare);
-    //   const rand = $li;
-    //   console.log($li.length);
-    //   $(rand[Math.floor(Math.random()rand.length)]);
-    //   console.log(rand);
-    // changeClassName();
   }
   pickRandom();
   //
-  // // // Change class name
-  // // function changeClassName () {
-  // $randomSquare(function() {
-  //   $randomSquare.addClass('background-color','yellow');
+  // Change class name
+  function changeClass () {
+    // $randomSquare.addClass('selected');
+    $randomSquare.style.background = 'green';
+    // console.log($selectedSquare);
+    //
+  }
   // });
-  // }
-  // // // }
-  // // //
-  // changeClassName();
+  changeClass();
+  //
+// Remove new class
+
+  function removeStyle () {
+    $randomSquare.removeAttr('style');
+  }
+  console.log(randomSquare);
+
+  // Add click event
+
+  function clickedOn() {
+    $randomSquare.on('click', removeStyle);
+  }
+
+  clickedOn();
+
+
+
 
 
 });
