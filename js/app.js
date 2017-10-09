@@ -10,13 +10,14 @@
 $(() => {
 
   let score = 0;
-  // let timer;
-  // let interval;
+  let timer = 30;
+  let interval;
 
   // Get DOM variables
   const $li = $('li');
   const $score = $('.score');
-  $button = $('button');
+  const $timeCountdown = $('.timer');
+  const $button = $('button');
   let $randomSquare;
 
   // Start game button
@@ -27,6 +28,8 @@ $(() => {
     pickRandom();
     clickedOn();
     repeat();
+    countdown(1000);
+
   }
   // startGame();
 
@@ -69,21 +72,33 @@ $(() => {
   function updateScore () {
     score++;
     $score.html(score);
-    console.log('updateScore');
+    // console.log('updateScore');
     stopGame();
   }
 
   // Repeat at interval
   function repeat () {
-    const interval = setInterval(pickRandom, 2000);
+    interval = setInterval(pickRandom, 2000);
     console.log('repeat');
   }
 
   // Stop game at score of 10
-
   function stopGame () {
-    if (score === 10) {
+    if (score === 3) {
       alert('Boom!');
+      stopInterval();
+    }
+  }
+
+  function stopInterval () {
+    clearInterval(interval);
+  }
+  function countdown() {
+    timer--;
+    $timeCountdown.html(timer);
+
+    if (timer <= 0) {
+      stopInterval();
     }
   }
 
