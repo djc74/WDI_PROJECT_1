@@ -7,8 +7,6 @@
 
 // stop game when score is 10
 
-// console.log("hello");
-
 
 $(() => {
   let score = 0;
@@ -18,6 +16,9 @@ $(() => {
 
   let $randomSquare;
   let timer;
+  let interval;
+
+
 
   // Pick random square and add new class
   function pickRandom () {
@@ -25,12 +26,6 @@ $(() => {
     // console.log($randomSquare);
   }
   pickRandom();
-  //
-  // Change class name
-  // function changeClass () {
-  //   $randomSquare.addClass('selected');
-  // }
-  // changeClass();
 
   // Remove new class on timeout
   function removeClass () {
@@ -43,9 +38,11 @@ $(() => {
 
   // Add click event
   function clickedOn () {
-    $randomSquare.on('click', removeClass, updateScore);
+    $randomSquare.on('click', function() {
+      removeClass();
+      updateScore();
+    });
   }
-
   clickedOn();
 
   // Update score
@@ -53,8 +50,20 @@ $(() => {
     score++;
     $score.html(score);
   }
-
-
+  // Repeat at interval
+  function repeat () {
+    interval = setInterval(function() {
+      pickRandom();
+      timeOut();
+      clickedOn();
+    }, 3000);
+  }
+  repeat();
+  // setInterval(function () {
+  //   pickRandom();
+  //   // timeOut();
+  //   // removeClass();
+  // }, 2000);
 
 
 });
