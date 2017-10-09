@@ -2,6 +2,7 @@
 // add class to make colour
 // add click event
 // remove class and click event after set time
+// repeat
 // update score
 // stop game when score is 10
 
@@ -14,7 +15,7 @@ $(() => {
   const $li = $('li');
 
   let $randomSquare;
-  // let $selectedSquare;
+  let timer;
 
   // Pick random square
   function pickRandom () {
@@ -26,36 +27,24 @@ $(() => {
   // Change class name
   function changeClass () {
     $randomSquare.addClass('selected');
-    // $randomSquare.style.background = 'green';
-    // console.log($randomSquare);
   }
-
   changeClass();
 
-  // Remove new class
-
+  // Remove new class on timeout
   function removeClass () {
     $randomSquare.removeClass('selected');
   }
 
-  // Set timeout
-  // setTimeout(() => {
-  // $randomSquare.removeAttr('style');
-  // } 1000);
-  //
-  // //
-  //   // function removeStyle () {
-  //   //
-  //   // }
-  //   // console.log(randomSquare);
-  //
-  //   // Add click event
-  //
-  //   function clickedOn() {
-  //     $randomSquare.on('click', removeStyle);
-  //   }
-  //
-  //   clickedOn();
+  function timeOut () {
+    timer = setTimeout(removeClass, 1000);
+  }
+  timeOut();
+
+  // Add click event
+  function clickedOn() {
+    $randomSquare.on('click', removeClass);
+  }
+  clickedOn();
 
   //   setTimeout(() => {
   //   console.log('setTimeout fired!');
