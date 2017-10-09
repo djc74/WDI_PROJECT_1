@@ -16,8 +16,19 @@ $(() => {
   // Get DOM variables
   const $li = $('li');
   const $score = $('.score');
+  $button = $('button');
   let $randomSquare;
 
+  // Start game button
+  $button.on('click', startGame);
+
+  // start game function
+  function startGame () {
+    pickRandom();
+    clickedOn();
+    repeat();
+  }
+  // startGame();
 
   // Pick random square and add new class
   function pickRandom () {
@@ -25,8 +36,6 @@ $(() => {
     // console.log($randomSquare);
     timeOut();
   }
-  pickRandom();
-  clickedOn();
 
   // Remove new class on timeout
 
@@ -50,7 +59,7 @@ $(() => {
   function clickResponse () {
     // console.log('clickResponse');
     if ($(this).hasClass('selected')) {
-      console.log('yes');
+      // console.log('yes');
       updateScore();
       $(this).removeClass('selected');
     }
@@ -60,7 +69,8 @@ $(() => {
   function updateScore () {
     score++;
     $score.html(score);
-    // console.log('updateScore');
+    console.log('updateScore');
+    stopGame();
   }
 
   // Repeat at interval
@@ -68,8 +78,13 @@ $(() => {
     const interval = setInterval(pickRandom, 2000);
     console.log('repeat');
   }
-  repeat();
 
+  // Stop game at score of 10
 
+  function stopGame () {
+    if (score === 10) {
+      alert('Boom!');
+    }
+  }
 
 });
