@@ -4,66 +4,73 @@
 // remove class and click event after set time
 // update score
 // repeat random selection
-
 // stop game when score is 10
 
 
 $(() => {
+
   let score = 0;
+  // let timer;
+  // let interval;
+
   // Get DOM variables
   const $li = $('li');
   const $score = $('.score');
-
   let $randomSquare;
-  let timer;
-  let interval;
-
 
 
   // Pick random square and add new class
   function pickRandom () {
     $randomSquare = $($li[Math.floor($li.length * Math.random())]).addClass('selected');
-    // console.log($randomSquare);
+    console.log($randomSquare);
+    timeOut();
   }
   pickRandom();
+  clickedOn();
 
   // Remove new class on timeout
+
   function removeClass () {
     $randomSquare.removeClass('selected');
+    console.log('removeClass');
   }
+
   function timeOut () {
-    timer = setTimeout(removeClass, 2000);
+    const timer = setTimeout(removeClass, 1000);
+console.log('timeOut');
   }
-  timeOut();
 
   // Add click event
   function clickedOn () {
-    $randomSquare.on('click', function() {
-      removeClass();
-      updateScore();
-    });
+    $li.on('click', clicky);
+    console.log('clickedOn');
   }
-  clickedOn();
+
+  function clicky() {
+    console.log('clicky');
+    if ($(this).hasClass('selected')) {
+      console.log('yes');
+      updateScore();
+      $(this).removeClass('selected');
+    }
+  }
 
   // Update score
   function updateScore () {
     score++;
     $score.html(score);
+    console.log('updateScore');
   }
+
   // Repeat at interval
   function repeat () {
-    interval = setInterval(function() {
+    const interval = setInterval(function() {
       pickRandom();
-      timeOut();
-      clickedOn();
-    }, 3000);
+    }, 2000);
+    console.log('repeat');
   }
   repeat();
-  // setInterval(function () {
-  //   pickRandom();
-  //   // timeOut();
-  //   // removeClass();
-  // }, 2000);
+
 
 
 });
