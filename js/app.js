@@ -114,20 +114,32 @@ $(() => {
   // Stop game at score of 10
   function stopGame () {
     if (score === levels[currentLevel]) {
-      $main.hide();
-      $boom.show();
       stopIntervals();
-      newLev();
+      boom();
     } else {
       if (counter <= 0) {
-        $main.hide();
-        $lose.show();
         stopIntervals();
-        reset();
+        lose();
+        // reset();
       }
     }
     // console.log('stopGame');
   }
+
+  //win game screen
+  function boom () {
+    $main.hide();
+    $boom.show();
+    $boom.on('click', newLev);
+  }
+
+  // lose game screen
+  function lose () {
+    $main.hide();
+    $lose.show();
+    $lose.on('click', reset);
+  }
+
 
   // Stop random square generator
   function stopIntervals () {
@@ -146,7 +158,9 @@ $(() => {
 
   // reset game
   function reset() {
-    $button.html('Play again?');
+    $main.show();
+    $lose.hide();
+    // $button.html('Play again?');
     counter = 30;
     score = 0;
     // console.log('reset');
@@ -154,7 +168,8 @@ $(() => {
 
   // start next level
   function newLev () {
-    $button.html('Next level?');
+    $boom.hide();
+    $main.show();
     currentLevel++;
     counter = 30;
     secondLevel();
