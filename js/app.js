@@ -10,7 +10,7 @@
 
 $(() => {
 
-  let currentLevel = 1
+  let currentLevel = 1;
   let score = 0;
   let timer;
   let interval;
@@ -75,7 +75,7 @@ $(() => {
 
   function timeOut () {
     timer = setTimeout(removeClass, remove);
-    console.log('timeOut');
+    // console.log('timeOut');
   }
 
   // Add click event
@@ -143,7 +143,8 @@ $(() => {
   function reset() {
     $button.html('Play again?');
     counter = 30;
-    console.log('reset');
+    score = 0;
+    // console.log('reset');
   }
 
   // start next level
@@ -151,8 +152,9 @@ $(() => {
     $button.html('Next level?');
     currentLevel++;
     counter = 30;
-    console.log(currentLevel);
+    secondLevel();
   }
+  console.log(currentLevel);
 
   // object to store levels
   const levels = {
@@ -161,13 +163,14 @@ $(() => {
     3: 9,
     4: 12
   };
+  console.log(levels[currentLevel]);
 
   //
+  // new settings for second level
   function secondLevel () {
-    if (levels[currentLevel] === 3) {
-      console.log(levels[currentLevel]);
+    if (levels[currentLevel] === 6) {
       speed = speed-100;
-      console.log(speed);
+      // console.log(speed);
       remove = remove-100;
       // console.log(remove);
       score = 0;
@@ -175,8 +178,8 @@ $(() => {
       setTimeout(removeClass, remove);
     }
   }
-  secondLevel();
-//
+  console.log(speed);
+
   //
 
 
