@@ -10,22 +10,43 @@
 
 $(() => {
 
+
   let score = 0;
   let timer;
   let interval;
   let seconds;
-  let counter = 30;
-  let $timeCountdown = null
+  let counter = 10;
+  let $timeCountdown = null;
 
   // Get DOM variables
+  const $welcome = $('.welcome');
+  const $main = $('.main');
   const $li = $('li');
   const $score = $('.score');
   $timeCountdown = $('.timer');
-  const $button = $('button');
+  const $button = $('.start');
+  const $enter = $('.enter');
   let $randomSquare;
 
+  //hide main screen
+  function welcome (){
+    $main.hide();
+    $enter.on('click', main);
+  }
+  welcome();
+
+  // reveal main screen and hide welcome
+  function main () {
+    $welcome.hide();
+    $main.show();
+  }
+
+
   // Start game button
-  $button.on('click', startGame);
+  function start () {
+    $button.on('click', startGame);
+  }
+  start();
 
   // start game function
   function startGame () {
@@ -33,16 +54,15 @@ $(() => {
     clickedOn();
     repeat();
     seconds = setInterval(countdown, 1000);
-    // countdown(1000);
-
+    // console.log('startGame');
   }
-  // startGame();
 
   // Pick random square and add new class
   function pickRandom () {
     $randomSquare = $($li[Math.floor($li.length * Math.random())]).addClass('selected');
     // console.log($randomSquare);
     timeOut();
+    // console.log('pickRandom');
   }
 
   // Remove new class on timeout
@@ -53,7 +73,7 @@ $(() => {
   }
 
   function timeOut () {
-    const timer = setTimeout(removeClass, 1000);
+    timer = setTimeout(removeClass, 1000);
     // console.log('timeOut');
   }
 
@@ -65,9 +85,9 @@ $(() => {
 
   // Update score and remove class of clicked square
   function clickResponse () {
-    // console.log('clickResponse');
+    //console.log('clickResponse');
     if ($(this).hasClass('selected')) {
-      // console.log('yes');
+      //console.log('yes');
       updateScore();
       $(this).removeClass('selected');
     }
@@ -77,45 +97,60 @@ $(() => {
   function updateScore () {
     score++;
     $score.html(score);
-    // console.log('updateScore');
+    //console.log('updateScore');
     stopGame();
   }
 
   // Repeat at interval
   function repeat () {
     interval = setInterval(pickRandom, 2000);
-    console.log('repeat');
+    //console.log('repeat');
   }
 
   // Stop game at score of 10
   function stopGame () {
     if (score === 3) {
       alert('Boom!');
-      stopInterval();
-      clearInterval(seconds);
+      stopIntervals();
+      // clearInterval(seconds);
+    } else {
+      if (counter <= 0) {
+        alert('You\'re dead!');
+        stopIntervals();
+        // clearInterval(seconds);
+      }
     }
+    // console.log('stopGame');
   }
 
   // Stop random square generator
-  function stopInterval () {
+  function stopIntervals () {
     clearInterval(interval);
+    clearInterval(seconds);
+    // reset();
+    //console.log('stopIntervals');
   }
 
-  //countdown timer
+  // countdown timer
   function countdown() {
     counter--;
     $timeCountdown.html(counter);
     // console.log('countdown');
-    endGame();
+    stopGame();
   }
 
-  // stop game on time out
-  function endGame () {
-    if (counter <= 0) {
-      clearInterval(seconds);
-      stopInterval();
-      alert('You\'re dead!')
-    }
-  }
+  //   // reset game
+  //   function reset() {
+  //     $button.html('Play again?');
+  //     counter = 10;
+  //     $score.html(score);
+  //     start();
+  // console.log('reset');
+  //   }
+
+
+
+
+
 
 });
