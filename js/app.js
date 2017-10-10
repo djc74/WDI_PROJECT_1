@@ -10,19 +10,22 @@
 
 $(() => {
 
-
+  let currentLevel = 1
   let score = 0;
   let timer;
   let interval;
   let seconds;
-  let counter = 10;
+  let counter = 30;
   let $timeCountdown = null;
+  let speed = 1000;
+  let remove = 1000;
 
   // Get DOM variables
   const $welcome = $('.welcome');
   const $main = $('.main');
   const $li = $('li');
   const $score = $('.score');
+  //const $highscore = $('.highscore');
   const $button = $('.start');
   const $enter = $('.enter');
   let $randomSquare;
@@ -51,7 +54,7 @@ $(() => {
     pickRandom();
     clickedOn();
     repeat();
-    seconds = setInterval(countdown, 1000);
+    seconds = setInterval(countdown, speed);
     // console.log('startGame');
   }
 
@@ -71,8 +74,8 @@ $(() => {
   }
 
   function timeOut () {
-    timer = setTimeout(removeClass, 1000);
-    // console.log('timeOut');
+    timer = setTimeout(removeClass, remove);
+    console.log('timeOut');
   }
 
   // Add click event
@@ -107,17 +110,15 @@ $(() => {
 
   // Stop game at score of 10
   function stopGame () {
-    if (score === 3) {
+    if (score === levels[currentLevel]) {
       alert('Boom!');
       stopIntervals();
       newLev();
-      // clearInterval(seconds);
     } else {
       if (counter <= 0) {
         alert('You\'re dead!');
         stopIntervals();
         reset();
-        // clearInterval(seconds);
       }
     }
     // console.log('stopGame');
@@ -127,7 +128,6 @@ $(() => {
   function stopIntervals () {
     clearInterval(interval);
     clearInterval(seconds);
-    // reset();
     //console.log('stopIntervals');
   }
 
@@ -142,19 +142,42 @@ $(() => {
   // reset game
   function reset() {
     $button.html('Play again?');
-    counter = 10;
-    // $score.html(score);
-    // start();
+    counter = 30;
     console.log('reset');
   }
 
   // start next level
   function newLev () {
     $button.html('Next level?');
-    console.log('newLev');
+    currentLevel++;
+    counter = 30;
+    console.log(currentLevel);
   }
 
+  // object to store levels
+  const levels = {
+    1: 3,
+    2: 6,
+    3: 9,
+    4: 12
+  };
 
+  //
+  function secondLevel () {
+    if (levels[currentLevel] === 3) {
+      console.log(levels[currentLevel]);
+      speed = speed-100;
+      console.log(speed);
+      remove = remove-100;
+      // console.log(remove);
+      score = 0;
+      clearTimeout();
+      setTimeout(removeClass, remove);
+    }
+  }
+  secondLevel();
+//
+  //
 
 
 });

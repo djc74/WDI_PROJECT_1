@@ -27,11 +27,12 @@ li {
 .selected {
   background-color: yellow;
 }
-.score-board {
+.score-board .highscore {
   text-align: center;
-  margin: 10px auto;
+  margin: 20px auto;
   font-size: 20px;
 }
+
 button {
   margin: 10px auto 0;
   background: red;
