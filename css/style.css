@@ -35,5 +35,11 @@ li {
 
 button {
   margin: 10px auto 0;
-  background: red;
+  background-color: red;
+}
+.boom .lose {
+  width: 200px;
+  height: 200px;
+  background-color: green;
+  font-size: 40px;
 }

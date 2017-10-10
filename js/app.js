@@ -25,15 +25,18 @@ $(() => {
   const $main = $('.main');
   const $li = $('li');
   const $score = $('.score');
-  //const $highscore = $('.highscore');
   const $button = $('.start');
   const $enter = $('.enter');
+  const $boom = $('.boom');
+  const $lose = $('.lose');
   let $randomSquare;
   $timeCountdown = $('.timer');
 
   //hide main screen
   function welcome (){
     $main.hide();
+    $boom.hide();
+    $lose.hide();
     $enter.on('click', main);
   }
   welcome();
@@ -111,12 +114,14 @@ $(() => {
   // Stop game at score of 10
   function stopGame () {
     if (score === levels[currentLevel]) {
-      alert('Boom!');
+      $main.hide();
+      $boom.show();
       stopIntervals();
       newLev();
     } else {
       if (counter <= 0) {
-        alert('You\'re dead!');
+        $main.hide();
+        $lose.show();
         stopIntervals();
         reset();
       }
