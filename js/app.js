@@ -7,16 +7,20 @@
 // stop game when score is 10
 
 
+
 $(() => {
 
   let score = 0;
-  let timer = 30;
+  let timer;
   let interval;
+  let seconds;
+  let counter = 30;
+  let $timeCountdown = null
 
   // Get DOM variables
   const $li = $('li');
   const $score = $('.score');
-  const $timeCountdown = $('.timer');
+  $timeCountdown = $('.timer');
   const $button = $('button');
   let $randomSquare;
 
@@ -28,7 +32,8 @@ $(() => {
     pickRandom();
     clickedOn();
     repeat();
-    countdown(1000);
+    seconds = setInterval(countdown, 1000);
+    // countdown(1000);
 
   }
   // startGame();
@@ -87,18 +92,29 @@ $(() => {
     if (score === 3) {
       alert('Boom!');
       stopInterval();
+      clearInterval(seconds);
     }
   }
 
+  // Stop random square generator
   function stopInterval () {
     clearInterval(interval);
   }
-  function countdown() {
-    timer--;
-    $timeCountdown.html(timer);
 
-    if (timer <= 0) {
+  //countdown timer
+  function countdown() {
+    counter--;
+    $timeCountdown.html(counter);
+    // console.log('countdown');
+    endGame();
+  }
+
+  // stop game on time out
+  function endGame () {
+    if (counter <= 0) {
+      clearInterval(seconds);
       stopInterval();
+      alert('You\'re dead!')
     }
   }
 
