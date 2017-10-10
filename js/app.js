@@ -23,10 +23,10 @@ $(() => {
   const $main = $('.main');
   const $li = $('li');
   const $score = $('.score');
-  $timeCountdown = $('.timer');
   const $button = $('.start');
   const $enter = $('.enter');
   let $randomSquare;
+  $timeCountdown = $('.timer');
 
   //hide main screen
   function welcome (){
@@ -43,10 +43,8 @@ $(() => {
 
 
   // Start game button
-  function start () {
-    $button.on('click', startGame);
-  }
-  start();
+  $button.on('click', startGame);
+
 
   // start game function
   function startGame () {
@@ -112,11 +110,13 @@ $(() => {
     if (score === 3) {
       alert('Boom!');
       stopIntervals();
+      newLev();
       // clearInterval(seconds);
     } else {
       if (counter <= 0) {
         alert('You\'re dead!');
         stopIntervals();
+        reset();
         // clearInterval(seconds);
       }
     }
@@ -139,16 +139,20 @@ $(() => {
     stopGame();
   }
 
-  //   // reset game
-  //   function reset() {
-  //     $button.html('Play again?');
-  //     counter = 10;
-  //     $score.html(score);
-  //     start();
-  // console.log('reset');
-  //   }
+  // reset game
+  function reset() {
+    $button.html('Play again?');
+    counter = 10;
+    // $score.html(score);
+    // start();
+    console.log('reset');
+  }
 
-
+  // start next level
+  function newLev () {
+    $button.html('Next level?');
+    console.log('newLev');
+  }
 
 
 
