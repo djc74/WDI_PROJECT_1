@@ -103,10 +103,9 @@ $(() => {
       makeHarder();
       boom();
     } else {
-      if (currentLevel === 2) {
-        stopIntervals();  
+      if (currentLevel === 5) {
+        stopIntervals();
         winScreen();
-
       } else {
         if (counter <= 0) {
           stopIntervals();
