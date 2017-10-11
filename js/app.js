@@ -7,7 +7,7 @@ $(() => {
   let $timeCountdown = null;
   let speed = 1000;
   let remove = 1000;
-  let interval;
+  let gameInterval;
   let seconds;
 
   // object to store levels
@@ -31,13 +31,14 @@ $(() => {
   $timeCountdown = $('.timer');
 
   //hide main screen
+  welcome();
+
   function welcome (){
     $main.hide();
     $boom.hide();
     $lose.hide();
     $enter.on('click', main);
   }
-  welcome();
 
   // reveal main screen and hide welcome
   function main () {
@@ -52,7 +53,7 @@ $(() => {
   function startGame () {
     pickRandom();
     clickedOn();
-    repeat();
+    gameInterval = setInterval(pickRandom, 2000);
     seconds = setInterval(countdown, speed);
   }
 
@@ -87,16 +88,15 @@ $(() => {
   // Update score
   function updateScore () {
     score++;
-    $score.html(score);
     stopGame();
+    $score.html(score);
   }
 
-  // Repeat at interval
-  function repeat () {
-    interval = setInterval(pickRandom, 2000);
-  }
+  // function checkForNextLevel() {
+  //   stopIntervals();
+  // }
 
-  // Stop game at score of 10
+  // Stop game at certain score
   function stopGame () {
     if (score === levels[currentLevel]) {
       stopIntervals();
@@ -125,7 +125,7 @@ $(() => {
 
   // Stop random square generator
   function stopIntervals () {
-    clearInterval(interval);
+    //clearInterval(interval);
     clearInterval(seconds);
   }
 
@@ -150,27 +150,20 @@ $(() => {
     $main.show();
     currentLevel++;
     counter = 30;
-    secondLevel();
-  }
-  // console.log(currentLevel);
-
-
-  // new settings for second level
-  function secondLevel () {
-    if (levels[currentLevel] === 6) {
-      makeHarder();
-    }
-    console.log(levels[currentLevel]);
+    makeHarder();
   }
 
   // make game harder
   function makeHarder () {
-    speed = speed-200;
-    remove = remove-200;
-    score = 0;
-    clearTimeout();
-    timeOut();
-  }  //
+    if (levels[currentLevel] === score+3) {
+      speed = speed-10;
+      remove = remove-10;
+      score = 0;
+      clearTimeout(gameInterval);
+      timeOut();
+      startGame();
+    }
+  } //
 
 
 });
