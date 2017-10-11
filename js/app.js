@@ -101,20 +101,16 @@ $(() => {
       currentLevel++;
       stopIntervals();
       makeHarder();
-      boom();
+      levelWin();
     } else {
-      if (currentLevel === 5) {
+      if (counter <= 0) {
         stopIntervals();
-        winScreen();
-      } else {
-        if (counter <= 0) {
-          stopIntervals();
-          lose();
-        }
+        levelLose();
       }
     }
   }
 
+  // stop intervals
   function stopIntervals () {
     clearInterval(seconds);
     clearInterval(gameInterval);
@@ -123,15 +119,20 @@ $(() => {
     counter = 31;
   }
 
-
-  //win game screen
-  function boom () {
+  // win game screen
+  function levelWin () {
     $main.hide();
-    $boom.show().on('click', nextLevel);
+    $button.hide();
+    if (currentLevel === 5) {
+      stopIntervals();
+      $win.show();
+    } else {
+      $boom.show().on('click', nextLevel);
+    }
   }
 
   // lose game screen
-  function lose () {
+  function levelLose () {
     $main.hide();
     $lose.show().on('click', reset);
   }
@@ -145,7 +146,6 @@ $(() => {
 
   // reset game
   function reset() {
-    // counter = 30;
     $main.show();
     $lose.hide();
     startGame();
@@ -155,7 +155,6 @@ $(() => {
   function nextLevel () {
     $boom.hide();
     $main.show();
-    // counter = 30;
   }
 
   // make game harder
@@ -166,9 +165,6 @@ $(() => {
     startGame();
     console.log(levels[currentLevel]);
   }
-  function winScreen () {
-    $boom.hide();
-    $win.show();
-    console.log('win screen');
-  }
+
+
 });
