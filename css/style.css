@@ -37,7 +37,7 @@ button {
   margin: 10px auto 0;
   background-color: red;
 }
-.boom .lose {
+.boom .lose .win {
   width: 200px;
   height: 200px;
   background-color: green;

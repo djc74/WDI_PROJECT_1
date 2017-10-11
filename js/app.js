@@ -4,6 +4,7 @@ $(() => {
   let currentLevel = 1;
   let score = 0;
   let counter = 30;
+  let choose = 2000;
   let $timeCountdown = null;
   let speed = 1000;
   let remove = 1000;
@@ -15,7 +16,8 @@ $(() => {
     1: 3,
     2: 6,
     3: 9,
-    4: 12
+    4: 12,
+    5: 15
   };
 
   // Get DOM variables
@@ -27,18 +29,19 @@ $(() => {
   const $enter = $('.enter');
   const $boom = $('.boom');
   const $lose = $('.lose');
+  const $win = $('.win');
   let $randomSquare;
   $timeCountdown = $('.timer');
 
-  //hide main screen
-  welcome();
-
-  function welcome (){
+  //hide main screen and show welcome
+  function welcome () {
     $main.hide();
     $boom.hide();
     $lose.hide();
+    $win.hide();
     $enter.on('click', main);
   }
+  welcome();
 
   // reveal main screen and hide welcome
   function main () {
@@ -53,7 +56,7 @@ $(() => {
   function startGame () {
     pickRandom();
     clickedOn();
-    gameInterval = setInterval(pickRandom, 2000);
+    gameInterval = setInterval(pickRandom, choose);
     seconds = setInterval(countdown, speed);
   }
 
@@ -89,21 +92,25 @@ $(() => {
   function updateScore () {
     score++;
     stopGame();
+    // checkForNextLevel();
     $score.html(score);
   }
 
   // function checkForNextLevel() {
-  //   stopIntervals();
+
   // }
 
   // Stop game at certain score
   function stopGame () {
     if (score === levels[currentLevel]) {
-      stopIntervals();
+      currentLevel++;
+      clearInterval(seconds);
+      makeHarder();
       boom();
     } else {
       if (counter <= 0) {
-        stopIntervals();
+        clearInterval(seconds);
+        makeHarder();
         lose();
       }
     }
@@ -112,28 +119,19 @@ $(() => {
   //win game screen
   function boom () {
     $main.hide();
-    $boom.show();
-    $boom.on('click', newLev);
+    $boom.show().on('click', nextLevel);
   }
 
   // lose game screen
   function lose () {
     $main.hide();
-    $lose.show();
-    $lose.on('click', reset);
-  }
-
-  // Stop random square generator
-  function stopIntervals () {
-    //clearInterval(interval);
-    clearInterval(seconds);
+    $lose.show().on('click', reset);
   }
 
   // countdown timer
   function countdown() {
     counter--;
     $timeCountdown.html(counter);
-    stopGame();
   }
 
   // reset game
@@ -145,25 +143,34 @@ $(() => {
   }
 
   // start next level
-  function newLev () {
+  function nextLevel () {
     $boom.hide();
     $main.show();
-    currentLevel++;
     counter = 30;
-    makeHarder();
+    score = 0;
   }
 
   // make game harder
   function makeHarder () {
-    if (levels[currentLevel] === score+3) {
-      speed = speed-10;
-      remove = remove-10;
+    if (score === levels[currentLevel]) {
+      speed = speed-100;
+      remove = remove-100;
+      choose = choose-100;
       score = 0;
-      clearTimeout(gameInterval);
+      clearInterval(gameInterval);
       timeOut();
       startGame();
     }
-  } //
+console.log(levels[currentLevel]);
+  }
 
+  // function checkWin() {
+  //   clearInterval(seconds);
+  //   makeHarder();
+  //   if (levels[currentLevel] === 12) {
+  //     $main.hide;
+  //     $win.show;
+  //   }
+  // }
 
 });
