@@ -3,7 +3,7 @@ $(() => {
   //settings at Start
   let currentLevel = 1;
   let score = 0;
-  let counter = 30;
+  let counter = 31;
   let choose = 2000;
   let $timeCountdown = null;
   let speed = 1000;
@@ -135,6 +135,7 @@ $(() => {
   function levelLose () {
     $main.hide();
     $lose.show().on('click', reset);
+    stopIntervals();
   }
 
   // countdown timer
@@ -149,6 +150,8 @@ $(() => {
     $main.show();
     $lose.hide();
     startGame();
+    score = 0;
+    counter = 31;
   }
 
   // start next level
