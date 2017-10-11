@@ -99,18 +99,25 @@ $(() => {
   function stopGame () {
     if (score === levels[currentLevel]) {
       currentLevel++;
-      clearInterval(seconds);
+      stopIntervals();
       makeHarder();
       boom();
     } else {
       if (counter <= 0) {
-        clearInterval(seconds);
-        clearInterval(gameInterval);
-        timeOut();
+        stopIntervals();
         lose();
       }
     }
   }
+
+  function stopIntervals () {
+    clearInterval(seconds);
+    clearInterval(gameInterval);
+    timeOut();
+    score = 0;
+    counter = 30;
+  }
+
 
   //win game screen
   function boom () {
@@ -128,24 +135,22 @@ $(() => {
   function countdown() {
     counter--;
     $timeCountdown.html(counter);
+    stopGame();
   }
 
   // reset game
   function reset() {
-    counter = 30;
-    score = 0;
+    // counter = 30;
     $main.show();
     $lose.hide();
     startGame();
-
   }
 
   // start next level
   function nextLevel () {
     $boom.hide();
     $main.show();
-    counter = 30;
-    score = 0;
+    // counter = 30;
   }
 
   // make game harder
@@ -153,9 +158,6 @@ $(() => {
     speed = speed-100;
     remove = remove-100;
     choose = choose-100;
-    score = 0;
-    clearInterval(gameInterval);
-    timeOut();
     startGame();
     console.log(levels[currentLevel]);
   }
