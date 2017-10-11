@@ -92,13 +92,8 @@ $(() => {
   function updateScore () {
     score++;
     stopGame();
-    // checkForNextLevel();
     $score.html(score);
   }
-
-  // function checkForNextLevel() {
-
-  // }
 
   // Stop game at certain score
   function stopGame () {
@@ -110,7 +105,8 @@ $(() => {
     } else {
       if (counter <= 0) {
         clearInterval(seconds);
-        makeHarder();
+        clearInterval(gameInterval);
+        timeOut();
         lose();
       }
     }
@@ -140,6 +136,8 @@ $(() => {
     score = 0;
     $main.show();
     $lose.hide();
+    startGame();
+
   }
 
   // start next level
@@ -152,25 +150,16 @@ $(() => {
 
   // make game harder
   function makeHarder () {
-    if (score === levels[currentLevel]) {
-      speed = speed-100;
-      remove = remove-100;
-      choose = choose-100;
-      score = 0;
-      clearInterval(gameInterval);
-      timeOut();
-      startGame();
-    }
-console.log(levels[currentLevel]);
+    speed = speed-100;
+    remove = remove-100;
+    choose = choose-100;
+    score = 0;
+    clearInterval(gameInterval);
+    timeOut();
+    startGame();
+    console.log(levels[currentLevel]);
   }
 
-  // function checkWin() {
-  //   clearInterval(seconds);
-  //   makeHarder();
-  //   if (levels[currentLevel] === 12) {
-  //     $main.hide;
-  //     $win.show;
-  //   }
-  // }
+
 
 });
