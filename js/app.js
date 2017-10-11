@@ -103,9 +103,15 @@ $(() => {
       makeHarder();
       boom();
     } else {
-      if (counter <= 0) {
-        stopIntervals();
-        lose();
+      if (currentLevel === 2) {
+        stopIntervals();  
+        winScreen();
+
+      } else {
+        if (counter <= 0) {
+          stopIntervals();
+          lose();
+        }
       }
     }
   }
@@ -115,7 +121,7 @@ $(() => {
     clearInterval(gameInterval);
     timeOut();
     score = 0;
-    counter = 30;
+    counter = 31;
   }
 
 
@@ -161,7 +167,9 @@ $(() => {
     startGame();
     console.log(levels[currentLevel]);
   }
-
-
-
+  function winScreen () {
+    $boom.hide();
+    $win.show();
+    console.log('win screen');
+  }
 });
