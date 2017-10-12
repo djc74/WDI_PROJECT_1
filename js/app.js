@@ -5,9 +5,9 @@ $(() => {
   let score = 0;
   let counter = 31;
   let choose = 2000;
-  let $timeCountdown = null;
   let speed = 1000;
   let remove = 1000;
+  let $timeCountdown = null;
   let gameInterval;
   let seconds;
 
@@ -54,6 +54,9 @@ $(() => {
 
   // start game function
   function startGame () {
+    score = 0;
+    counter = 31;
+    $score.html(score);
     pickRandom();
     clickedOn();
     gameInterval = setInterval(pickRandom, choose);
@@ -114,9 +117,9 @@ $(() => {
   function stopIntervals () {
     clearInterval(seconds);
     clearInterval(gameInterval);
-    timeOut();
-    score = 0;
-    counter = 31;
+    // timeOut();
+    // score = 0;
+    // counter = 31;
   }
 
   // win game screen
@@ -135,7 +138,6 @@ $(() => {
   function levelLose () {
     $main.hide();
     $lose.show().on('click', reset);
-    stopIntervals();
   }
 
   // countdown timer
@@ -149,9 +151,10 @@ $(() => {
   function reset() {
     $main.show();
     $lose.hide();
+    stopIntervals();
     startGame();
-    score = 0;
-    counter = 31;
+    // score = 0;
+    // counter = 31;
   }
 
   // start next level
