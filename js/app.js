@@ -30,8 +30,14 @@ $(() => {
   const $boom = $('.boom');
   const $lose = $('.lose');
   const $win = $('.win');
+  const $target = $('.target');
   let $randomSquare;
   $timeCountdown = $('.timer');
+  // const $monster = $('.monster');
+  // $randomSquare = $monster;
+
+
+
 
   //hide main screen and show welcome
   function welcome () {
@@ -47,10 +53,11 @@ $(() => {
   function main () {
     $welcome.hide();
     $main.show();
+    startGame();
   }
 
   // Start game button
-  $button.on('click', startGame);
+  // $button.on('click', startGame);
 
   // start game function
   function startGame () {
@@ -117,9 +124,6 @@ $(() => {
   function stopIntervals () {
     clearInterval(seconds);
     clearInterval(gameInterval);
-    // timeOut();
-    // score = 0;
-    // counter = 31;
   }
 
   // win game screen
@@ -131,6 +135,7 @@ $(() => {
       $win.show();
     } else {
       $boom.show().on('click', nextLevel);
+      $target.html(`Your new target is ${levels[currentLevel]} sausages`);
     }
   }
 
@@ -153,8 +158,6 @@ $(() => {
     $lose.hide();
     stopIntervals();
     startGame();
-    // score = 0;
-    // counter = 31;
   }
 
   // start next level

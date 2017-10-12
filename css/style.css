@@ -2,16 +2,28 @@
   box-sizing: border-box;
   text-align: center;
   cursor: url(store/sausage-no-background.png), auto;
-  background: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: black;
+  cursor: url(../images/sausage-resize.png), auto;
 }
 
-.feed, .boom-head, .lose-head, .win-head {
+.feed, .boom-head, .win-head {
   color: red;
-  margin-top: 100px;
+  margin-top: 250px;
   font-size: 80px;
 }
 
-.feed-text, .boom-text, .lose-text, .win-text {
+.lose {
+  margin-top: 40px;
+}
+
+.lose-head {
+  color: red;
+  font-size: 80px;
+}
+
+.feed-text, .boom-text, .lose-text, .win-text, .target {
   color: white;
   margin: 20px;
   font-size: 25px;
@@ -28,54 +40,47 @@
 }
 
 .score-board {
-  background-color: white;
+  color: white;
   float: left;
   text-align: center;
-  margin: 40px 40px 10px;
+  margin: 40px 40px 20px;
   font-size: 30px;
+  padding-bottom: 20px;
 }
 
 .score {
-  background-color: white;
+  color: white;
 }
 
 heading {
   display: inline-block;
-  background-color: white;
+  color: white;
   margin: 30px auto 0;
   font-size: 40px;
+  padding-bottom: 20px;
 }
 
 .timer {
-  background-color: white;
+  color: white;
   float: right;
-  margin: 40px 40px 10px;
+  margin: 40px 40px 20px;
   font-size: 30px;
-}
-.start {
-  display: block;
-  clear: both;
-  margin: 0 auto 10px;
-  background-color: red;
-}
-
-.main {
-  background-color: white;
+  padding-bottom: 20px;
 }
 
 ul {
-  /*background-color: white;*/
   clear: both;
-  margin: 20px auto;
+  margin: 20px auto 10px;
 }
 
 li {
   float: left;
   width: 20%;
-  height: 180px;
-  background-color: black;
+  height: 170px;
 }
 
 .selected {
-  background-color: yellow;
+  background-image: url(../images/rsz_littlemonster.png);
+  background-repeat: no-repeat;
+  background-size: cover;
 }
