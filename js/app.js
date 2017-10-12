@@ -102,7 +102,6 @@ $(() => {
     if (score === levels[currentLevel]) {
       currentLevel++;
       stopIntervals();
-      makeHarder();
       levelWin();
     } else {
       if (counter <= 0) {
@@ -121,13 +120,13 @@ $(() => {
   // win game screen
   function levelWin () {
     $main.hide();
-    new Audio('sounds/roar.mp3').play();
-    if (currentLevel === 5) {
-      stopIntervals();
+    new Audio('sounds/boom.mp3').play();
+    if (currentLevel === 4) {
       $win.show();
+      new Audio('sounds/cheer.mp3').play();
     } else {
       $boom.show().on('click', nextLevel);
-      $target.html(`Your new target is ${levels[currentLevel]} sausages`);
+      $target.html(`Your new target will be ${levels[currentLevel]} sausages`);
     }
   }
 
@@ -155,8 +154,10 @@ $(() => {
 
   // start next level
   function nextLevel () {
+    stopIntervals();
     $boom.hide();
     $main.show();
+    makeHarder();
   }
 
   // make game harder

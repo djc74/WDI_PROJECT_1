@@ -12,7 +12,7 @@
 .feed, .win-head {
   color: red;
   margin-top: 250px;
-  font-size: 80px;
+  font-size: 120px;
   font-family: 'Creepster', cursive;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .lose {
-  margin-top: 40px;
+  margin-top: 100px;
 }
 
 .lose-head {
@@ -30,15 +30,24 @@
   font-size: 80px;
 }
 
-.feed-text, .boom-text, .lose-text, .win-text, .target {
+.feed-text, .boom-text, .lose-text, .win-text {
+  font-family: 'Ropa Sans', sans-serif;
   color: white;
   margin: 20px;
   font-size: 25px;
 }
 
-.enter {
+.target {
+  font-family: 'Ropa Sans', sans-serif;
+  color: white;
   margin: 20px;
-  font-size: 20px;
+  font-size: 35px;
+}
+
+.enter {
+  font-family: 'Ropa Sans', sans-serif;
+  margin: 20px;
+  font-size: 30px;
   color: white;
   background-color: red;
   padding: 10px;
@@ -47,6 +56,7 @@
 }
 
 .score-board {
+  font-family: 'Ropa Sans', sans-serif;
   color: white;
   float: left;
   text-align: center;
@@ -56,6 +66,7 @@
 }
 
 .score {
+  font-family: 'Ropa Sans', sans-serif;
   color: white;
 }
 
@@ -69,6 +80,7 @@ heading {
 }
 
 .timer {
+  font-family: 'Ropa Sans', sans-serif;
   color: white;
   float: right;
   margin: 40px 40px 20px;
