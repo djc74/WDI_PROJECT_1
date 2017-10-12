@@ -25,7 +25,6 @@ $(() => {
   const $main = $('.main');
   const $li = $('li');
   const $score = $('.score');
-  const $button = $('.start');
   const $enter = $('.enter');
   const $boom = $('.boom');
   const $lose = $('.lose');
@@ -33,11 +32,6 @@ $(() => {
   const $target = $('.target');
   let $randomSquare;
   $timeCountdown = $('.timer');
-  // const $monster = $('.monster');
-  // $randomSquare = $monster;
-
-
-
 
   //hide main screen and show welcome
   function welcome () {
@@ -45,6 +39,7 @@ $(() => {
     $boom.hide();
     $lose.hide();
     $win.hide();
+    new Audio('sounds/roar.mp3').play();
     $enter.on('click', main);
   }
   welcome();
@@ -55,9 +50,6 @@ $(() => {
     $main.show();
     startGame();
   }
-
-  // Start game button
-  // $button.on('click', startGame);
 
   // start game function
   function startGame () {
@@ -80,7 +72,6 @@ $(() => {
   function removeClass () {
     $randomSquare.removeClass('selected');
   }
-
   function timeOut () {
     setTimeout(removeClass, remove);
   }
@@ -100,6 +91,7 @@ $(() => {
 
   // Update score
   function updateScore () {
+    new Audio('sounds/swallow.mp3').play();
     score++;
     stopGame();
     $score.html(score);
@@ -129,7 +121,7 @@ $(() => {
   // win game screen
   function levelWin () {
     $main.hide();
-    $button.hide();
+    new Audio('sounds/roar.mp3').play();
     if (currentLevel === 5) {
       stopIntervals();
       $win.show();
@@ -141,6 +133,7 @@ $(() => {
 
   // lose game screen
   function levelLose () {
+    new Audio('sounds/roar.mp3').play();
     $main.hide();
     $lose.show().on('click', reset);
   }
@@ -172,7 +165,6 @@ $(() => {
     remove = remove-100;
     choose = choose-100;
     startGame();
-    console.log(levels[currentLevel]);
   }
 
 

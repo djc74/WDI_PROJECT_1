@@ -2,16 +2,22 @@
   box-sizing: border-box;
   text-align: center;
   cursor: url(store/sausage-no-background.png), auto;
+  background-image: url(../images/space.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
   cursor: url(../images/sausage-resize.png), auto;
 }
 
-.feed, .boom-head, .win-head {
+.feed, .win-head {
   color: red;
   margin-top: 250px;
   font-size: 80px;
+  font-family: 'Creepster', cursive;
+}
+
+.boom {
+  margin-top: 40px;
 }
 
 .lose {
@@ -19,6 +25,7 @@
 }
 
 .lose-head {
+  font-family: 'Creepster', cursive;
   color: red;
   font-size: 80px;
 }
@@ -53,6 +60,7 @@
 }
 
 heading {
+  font-family: 'Creepster', cursive;
   display: inline-block;
   color: white;
   margin: 30px auto 0;
@@ -76,7 +84,7 @@ ul {
 li {
   float: left;
   width: 20%;
-  height: 170px;
+  height: 220px;
 }
 
 .selected {
