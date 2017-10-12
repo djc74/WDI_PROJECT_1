@@ -30,6 +30,7 @@ $(() => {
   const $lose = $('.lose');
   const $win = $('.win');
   const $target = $('.target');
+  const $again = $('.again');
   let $randomSquare;
   $timeCountdown = $('.timer');
 
@@ -49,6 +50,7 @@ $(() => {
     $welcome.hide();
     $main.show();
     startGame();
+    backgroundAudio();
   }
 
   // start game function
@@ -124,9 +126,10 @@ $(() => {
     if (currentLevel === 4) {
       $win.show();
       new Audio('sounds/cheer.mp3').play();
+      $again.on('click', restart);
     } else {
       $boom.show().on('click', nextLevel);
-      $target.html(`Your new target will be ${levels[currentLevel]} sausages`);
+      $target.html(`Your new target is ${levels[currentLevel]} sausages`);
     }
   }
 
@@ -168,5 +171,11 @@ $(() => {
     startGame();
   }
 
+  function backgroundAudio () {
+    new Audio('sounds/01 Monster Mash.m4a').play();
+  }
+  function restart () {
+    $again.on('click', location.reload());
+  }
 
 });
