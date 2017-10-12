@@ -7,9 +7,10 @@ $(() => {
   let choose = 2000;
   let speed = 1000;
   let remove = 1000;
-  let $timeCountdown = null;
   let gameInterval;
   let seconds;
+  let $timeCountdown = null;
+
 
   // object to store levels
   const levels = {
@@ -31,8 +32,9 @@ $(() => {
   const $win = $('.win');
   const $target = $('.target');
   const $again = $('.again');
-  let $randomSquare;
   $timeCountdown = $('.timer');
+  let $randomSquare;
+
 
   //hide main screen and show welcome
   function welcome () {
@@ -50,7 +52,7 @@ $(() => {
     $welcome.hide();
     $main.show();
     startGame();
-    backgroundAudio();
+    backgroundMusic();
   }
 
   // start game function
@@ -93,7 +95,7 @@ $(() => {
 
   // Update score
   function updateScore () {
-    new Audio('sounds/swallow.mp3').play();
+    new Audio('sounds/bite.mp3').play();
     score++;
     stopGame();
     $score.html(score);
@@ -171,9 +173,12 @@ $(() => {
     startGame();
   }
 
-  function backgroundAudio () {
+  // background music
+  function backgroundMusic () {
     new Audio('sounds/01 Monster Mash.m4a').play();
   }
+
+  // restart at end
   function restart () {
     $again.on('click', location.reload());
   }

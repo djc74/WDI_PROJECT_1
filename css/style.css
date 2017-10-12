@@ -1,12 +1,11 @@
 * {
   box-sizing: border-box;
   text-align: center;
-  /*cursor: url(store/sausage-no-background.png), auto;*/
+  cursor: url(../images/sausage-resize.png), auto;
   background-image: url(../images/space.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-color: black;
-  cursor: url(../images/sausage-resize.png), auto;
 }
 
 .feed {
@@ -14,6 +13,13 @@
   margin-top: 250px;
   font-size: 120px;
   font-family: 'Creepster', cursive;
+}
+
+.feed-text {
+  font-family: 'Ropa Sans', sans-serif;
+  color: white;
+  margin: 20px;
+  font-size: 30px;
 }
 
 .boom {
@@ -41,11 +47,12 @@
   font-family: 'Creepster', cursive;
 }
 
-.feed-text, .boom-text, .lose-text, .again {
+.boom-text, .lose-text, .again {
   font-family: 'Ropa Sans', sans-serif;
   color: white;
   margin: 20px;
   font-size: 25px;
+  text-transform: uppercase;
 }
 
 .target {
@@ -86,7 +93,7 @@ heading {
   display: inline-block;
   color: white;
   margin: 30px auto 0;
-  font-size: 40px;
+  font-size: 50px;
   padding-bottom: 20px;
 }
 
@@ -95,7 +102,7 @@ heading {
   color: white;
   float: right;
   margin: 40px 40px 20px;
-  font-size: 30px;
+  font-size: 40px;
   padding-bottom: 20px;
 }
 
