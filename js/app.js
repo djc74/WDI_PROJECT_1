@@ -53,8 +53,6 @@ $(() => {
     $main.show();
     startGame();
     new Audio('sounds/01 Monster Mash.m4a').play();
-
-    // backgroundMusic();
   }
 
   // start game function
