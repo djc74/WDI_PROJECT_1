@@ -52,7 +52,9 @@ $(() => {
     $welcome.hide();
     $main.show();
     startGame();
-    backgroundMusic();
+    new Audio('sounds/01 Monster Mash.m4a').play();
+
+    // backgroundMusic();
   }
 
   // start game function
@@ -171,11 +173,6 @@ $(() => {
     remove = remove-100;
     choose = choose-100;
     startGame();
-  }
-
-  // background music
-  function backgroundMusic () {
-    new Audio('sounds/01 Monster Mash.m4a').play();
   }
 
   // restart at end
