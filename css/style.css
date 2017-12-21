@@ -8,9 +8,13 @@
   background-color: black;
 }
 
+.welcome {
+  margin-top: 70px;
+}
+
 .feed {
   color: red;
-  margin-top: 250px;
+  margin-top: 20px;
   font-size: 120px;
   font-family: 'Creepster', cursive;
 }
@@ -64,7 +68,7 @@
 
 .enter {
   font-family: 'Ropa Sans', sans-serif;
-  margin: 20px;
+  /*margin: 20px;*/
   font-size: 30px;
   color: white;
   background-color: red;
@@ -113,8 +117,8 @@ ul {
 
 li {
   float: left;
+  height: 250px;
   width: 20%;
-  height: 220px;
 }
 
 .selected {

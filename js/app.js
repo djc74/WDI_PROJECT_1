@@ -4,13 +4,12 @@ $(() => {
   let currentLevel = 1;
   let score = 0;
   let counter = 31;
-  let choose = 2000;
-  let speed = 1000;
-  let remove = 1000;
+  let choose = 3000;
+  let speed = 2000;
+  let remove = 2000;
   let gameInterval;
   let seconds;
   let $timeCountdown = null;
-
 
   // object to store levels
   const levels = {
@@ -34,7 +33,6 @@ $(() => {
   const $again = $('.again');
   $timeCountdown = $('.timer');
   let $randomSquare;
-
 
   //hide main screen and show welcome
   function welcome () {
